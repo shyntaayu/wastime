@@ -30,7 +30,9 @@ export class ListComponent implements OnInit {
   }
 
   onSelect(param) {
-    this._router.navigate(['/list', param.id])
+    // this._router.navigate(['/list', param.id])
+    this._router.navigate([param.id], {relativeTo: this._activeroute})
+
   }
 
   isSelected(param){

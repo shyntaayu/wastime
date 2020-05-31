@@ -34,7 +34,8 @@ export class BrewDetailComponent implements OnInit {
 
   goBack(){
     let id = this.brewId?this.brewId:null;
-    this._router.navigate(['/list', {id:id}])
+    // this._router.navigate(['/list', {id:id}])
+    this._router.navigate(['../', {id:id}], {relativeTo:this._activeroute})
   }
 
 }
