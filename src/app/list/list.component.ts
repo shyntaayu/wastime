@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
-import { error } from 'protractor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +10,8 @@ import { error } from 'protractor';
 export class ListComponent implements OnInit {
   brews: Object;
 
-  constructor(private _http: HttpService) { }
+  constructor(private _http: HttpService,
+    private _router: Router) { }
 
   ngOnInit(): void {
     this._http.getBeer().subscribe(data => {
@@ -20,6 +21,10 @@ export class ListComponent implements OnInit {
       error => {
         console.log(error)
       })
+  }
+
+  onSelect(param){
+this._router.navigate(['/list', param.id])
   }
 
 }
