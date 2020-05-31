@@ -6,9 +6,18 @@ import { throwError } from 'rxjs';
   selector: 'app-brew-detail',
   template: `
     <h3>You selected brewID {{brewId}}</h3>
-    <a (click)="goPrevious()">Previous</a>&nbsp;
-    <a (click)="goNext()">Next</a>
+    <button mat-button (click)="showOverview()">Overview</button>
+    <button mat-raised-button (click)="showContact()">Contact</button>
+    <router-outlet></router-outlet>
+    <button (click)="goPrevious()">Previous</button>&nbsp;
+    <button (click)="goNext()">Next</button>
     <div><button (click)="goBack()">Back</button></div>
+    <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-fab color="warn" aria-label="Example icon button with a home icon">
+          <mat-icon>home</mat-icon>
+        </button>
   `,
   styles: []
 })
@@ -19,7 +28,7 @@ export class BrewDetailComponent implements OnInit {
 
   ngOnInit(): void {
     // this.brewId = parseInt(this._activeroute.snapshot.paramMap.get('id'));
-    this._activeroute.paramMap.subscribe((param:ParamMap)=>{
+    this._activeroute.paramMap.subscribe((param: ParamMap) => {
       this.brewId = parseInt(param.get('id'))
     })
   }
@@ -32,10 +41,17 @@ export class BrewDetailComponent implements OnInit {
     this._router.navigate(['/list', this.brewId + 1])
   }
 
-  goBack(){
-    let id = this.brewId?this.brewId:null;
+  goBack() {
+    let id = this.brewId ? this.brewId : null;
     // this._router.navigate(['/list', {id:id}])
-    this._router.navigate(['../', {id:id}], {relativeTo:this._activeroute})
+    this._router.navigate(['../', { id: id }], { relativeTo: this._activeroute })
+  }
+
+  showOverview() {
+    this._router.navigate(['overview'], { relativeTo: this._activeroute })
+  }
+  showContact() {
+    this._router.navigate(['contact'], { relativeTo: this._activeroute })
   }
 
 }
