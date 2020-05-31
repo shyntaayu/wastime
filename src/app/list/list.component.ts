@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-list',
@@ -15,7 +16,10 @@ export class ListComponent implements OnInit {
     this._http.getBeer().subscribe(data => {
       this.brews = data;
       console.log(this.brews);
-    })
+    },
+      error => {
+        console.log(error)
+      })
   }
 
 }
