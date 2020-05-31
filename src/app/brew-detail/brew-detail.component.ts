@@ -6,15 +6,16 @@ import { throwError } from 'rxjs';
   selector: 'app-brew-detail',
   template: `
     <h3>You selected brewID {{brewId}}</h3>
-    <a (click)="goPrevious()">Previous</a>
+    <a (click)="goPrevious()">Previous</a>&nbsp;
     <a (click)="goNext()">Next</a>
+    <div><button (click)="goBack()">Back</button></div>
   `,
   styles: []
 })
 export class BrewDetailComponent implements OnInit {
 
   brewId;
-  constructor(private _activeroute: ActivatedRoute, private _route: Router) { }
+  constructor(private _activeroute: ActivatedRoute, private _router: Router) { }
 
   ngOnInit(): void {
     // this.brewId = parseInt(this._activeroute.snapshot.paramMap.get('id'));
@@ -24,11 +25,16 @@ export class BrewDetailComponent implements OnInit {
   }
 
   goPrevious() {
-    this._route.navigate(['/list', this.brewId - 1])
+    this._router.navigate(['/list', this.brewId - 1])
   }
 
   goNext() {
-    this._route.navigate(['/list', this.brewId + 1])
+    this._router.navigate(['/list', this.brewId + 1])
+  }
+
+  goBack(){
+    let id = this.brewId?this.brewId:null;
+    this._router.navigate(['/list', {id:id}])
   }
 
 }

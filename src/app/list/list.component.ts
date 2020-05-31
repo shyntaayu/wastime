@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
   brews: Object;
+  selectedBrewId;
 
   constructor(private _http: HttpService,
-    private _router: Router) { }
+    private _router: Router,
+    private _activeroute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this._http.getBeer().subscribe(data => {
@@ -21,10 +23,18 @@ export class ListComponent implements OnInit {
       error => {
         console.log(error)
       })
+
+      this._activeroute.paramMap.subscribe((param:ParamMap)=>{
+        this.selectedBrewId = parseInt(param.get('id'))
+      })
   }
 
-  onSelect(param){
-this._router.navigate(['/list', param.id])
+  onSelect(param) {
+    this._router.navigate(['/list', param.id])
+  }
+
+  isSelected(param){
+    return param.id === this.selectedBrewId;
   }
 
 }

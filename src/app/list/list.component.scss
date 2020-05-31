@@ -29,4 +29,9 @@ ul {
             flex-grow: 1;
         }
     }
+
+    li.selected{
+background-color: lightcoral;
+color: white;
+    }
 }
