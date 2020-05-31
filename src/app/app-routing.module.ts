@@ -6,7 +6,7 @@ import { ListComponent } from './list/list.component'; // Add this
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },              // Add this
+  { path: 'home', component: HomeComponent },              // Add this
   { path: 'list', component: ListComponent }           // Add this
 ];
 
@@ -15,3 +15,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+export const routingComponents = [HomeComponent, ListComponent]

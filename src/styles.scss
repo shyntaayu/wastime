@@ -39,6 +39,10 @@ header {
                 &:hover {
                     background: darken($primary, 10%);
                 }
+
+                &.active {
+                    background: darken($primary, 10%);
+                }
             }
         }
     }
