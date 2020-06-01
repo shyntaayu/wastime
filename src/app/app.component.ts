@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'myapp';
+  opened=false;
+
+  log(a){
+    console.log(a)
+  }
 }

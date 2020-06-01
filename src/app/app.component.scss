@@ -4,3 +4,14 @@
         padding-right: 2rem;
     }
 }
+
+mat-sidenav-container{
+    height: 100%;
+    mat-sidenav, mat-sidenav-content{
+        padding: 16px;
+    }
+    mat-sidenav{
+        background-color: lightblue;
+        width: 20%;
+    }
+}
