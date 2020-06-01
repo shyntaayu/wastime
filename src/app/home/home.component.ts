@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   notifications=0;
+  showSpinner=false;
   clickCounter: number = 0;
   name: string = '';
 
@@ -25,6 +26,13 @@ export class HomeComponent implements OnInit {
       notactive: this.clickCounter <= 4
     };
     return myClasses;
+  }
+
+  loadData(){
+    this.showSpinner=true;
+    setTimeout(()=>{
+      this.showSpinner=false;
+    },5000)
   }
 
 }
