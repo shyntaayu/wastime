@@ -7,12 +7,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { BrewDetailComponent } from './brew-detail/brew-detail.component';
 import { BrewOverviewComponent } from './brew-overview/brew-overview.component';
 import { BrewContactComponent } from './brew-contact/brew-contact.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'list', component: ListComponent },
+  { path: 'dashboard', component: DashboardComponent },
   {
     path: 'list/:id',
     component: BrewDetailComponent,
@@ -29,4 +31,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [HomeComponent, ListComponent, PageNotFoundComponent, BrewDetailComponent, BrewOverviewComponent, BrewContactComponent]
+export const routingComponents = [HomeComponent, ListComponent, PageNotFoundComponent, BrewDetailComponent, BrewOverviewComponent, BrewContactComponent, DashboardComponent]
