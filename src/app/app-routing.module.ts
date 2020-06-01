@@ -8,10 +8,15 @@ import { BrewDetailComponent } from './brew-detail/brew-detail.component';
 import { BrewOverviewComponent } from './brew-overview/brew-overview.component';
 import { BrewContactComponent } from './brew-contact/brew-contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DisabilitasComponent } from './disabilitas/disabilitas.component';
+import { AddDisabilitasComponent } from './disabilitas/add-disabilitas/add-disabilitas.component';
+import { EditDisabilitasComponent } from './disabilitas/edit-disabilitas/edit-disabilitas.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'list', component: ListComponent },
   { path: 'dashboard', component: DashboardComponent },
@@ -23,6 +28,11 @@ const routes: Routes = [
       { path: 'contact', component: BrewContactComponent }
     ]
   },
+  { path: '', pathMatch: 'full', redirectTo: 'add-disabilitas' },
+  { path: 'add-disabilitas', component: AddDisabilitasComponent, canActivate: [AuthGuard] },
+  { path: 'edit-disabilitas', component: EditDisabilitasComponent, canActivate: [AuthGuard] },
+  { path: 'disabilitas-list', component: DisabilitasComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
@@ -31,4 +41,16 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [HomeComponent, ListComponent, PageNotFoundComponent, BrewDetailComponent, BrewOverviewComponent, BrewContactComponent, DashboardComponent]
+export const routingComponents = [
+  HomeComponent, 
+  ListComponent, 
+  PageNotFoundComponent, 
+  BrewDetailComponent, 
+  BrewOverviewComponent, 
+  BrewContactComponent, 
+  DashboardComponent,
+  DisabilitasComponent,
+  AddDisabilitasComponent,
+  EditDisabilitasComponent,
+  LoginComponent
+]

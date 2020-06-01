@@ -1,34 +1,32 @@
-<!-- <header>
-  <div class="container">
-    <a routerLink="/" class="logo">CoolApp</a>
-    <nav>
-      <ul>
-        <li><a href="#" routerLink="/home" routerLinkActive="active">Home</a></li>
-        <li><a href="#" routerLink="/list" routerLinkActive="active">List</a></li>
-      </ul>
-    </nav>
-  </div>
-</header> -->
-<mat-toolbar color="primary" class="navbar">
-  <div>Wastime</div>
-  <div>
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="header">
+  <div>Disabilitas Records</div>
+  <div class="navbar">
     <span>Home</span>
-    <span>About</span>
-    <span>Service</span>
+    <span *ngIf="userFromApi">{{userFromApi.username}}</span>
+    <span (click)="logout()">Logout</span>
   </div>
+  <span class="nav-tool-items">
+    <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
+  </span>
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <!-- over,push <- mode value -->
-  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="log('opened')" (closed)="log('closed')">Sidenav</mat-sidenav>
-  <mat-sidenav-content>Main
-    <button (click)="opened=!opened">Toggle Open</button>
-    <button (click)="sidenav.open()">Open</button>
-    <button (click)="sidenav.close()">Close</button>
-    <button (click)="sidenav.toggle()">Toggle</button>
+  <!-- Sidenav -->
+  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
+    [fixedTopGap]>
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active" routerLink="/disabilitas-list">
+        <mat-icon>format_list_bulleted</mat-icon> View Disabilitass
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/add-disabilitas">
+        <mat-icon>add</mat-icon> Add Disabilitas
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<!-- <div class="container"> -->
-<router-outlet></router-outlet>
-<!-- </div> -->
